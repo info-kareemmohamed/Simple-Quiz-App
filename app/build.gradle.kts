@@ -41,6 +41,13 @@ android {
 dependencies {
 
 
+    //////////////////////ViewModel
+    val lifecycle_version = "2.8.0"
+
+
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    //////
 
 /////////
     implementation("com.intuit.ssp:ssp-android:1.1.1")
