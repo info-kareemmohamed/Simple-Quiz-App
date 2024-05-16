@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Simple Quiz App</string>
+    <string name="restart_quiz">Restart Quiz</string>
+    <string name="option_1">option 1</string>
+    <string name="option_2">option 2</string>
+    <string name="option_3">option 3</string>
+    <string name="question">Question</string>
 </resources>
