@@ -5,4 +5,6 @@
     <color name="navyBlue">#323b60</color>
     <color name="pink">#e05d5d</color>
     <color name="light_shade">#F1ECDE</color>
+    <color name="green">#1CDC24</color>
+    <color name="red">#EA1212</color>
 </resources>
