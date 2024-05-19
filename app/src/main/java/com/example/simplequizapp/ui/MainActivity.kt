@@ -18,13 +18,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class MainActivity : AppCompatActivity(), OnClickListener,ButtonRestartQuizListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var questionViewModel: QuestionViewModel
     private var score: Int = 0
     private var index: Int = 0
     private var isScreenLocked = false
     private lateinit var questions: List<Question>
+    private lateinit var dialogFragment: DialogFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
              var icon:Int
              var message:String
              if(score>questions.size/2){icon=R.drawable.winner;message="Winner"}else{icon=R.drawable.sad;message="Loser"}
-            val dialogFragment = DialogFragment.newInstance(message, score.toString(), icon)
+            dialogFragment = DialogFragment.newInstance(message, score.toString(), icon)
             dialogFragment.show(supportFragmentManager, "dialog_fragment_tag")
             clear()
         }
@@ -140,5 +141,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 R.id.Main_restart_quiz -> clear()
             }
         }
+    }
+
+    override fun onClick() {
+        dialogFragment.dismiss()
     }
 }

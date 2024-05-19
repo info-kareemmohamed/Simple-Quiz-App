@@ -1,5 +1,6 @@
 package com.example.simplequizapp.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,21 @@ class DialogFragment : androidx.fragment.app.DialogFragment() {
     private var message: String? = null
     private var score: String? = null
     private var icon: Int? = null
+    private var listener: ButtonRestartQuizListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            listener = context as ButtonRestartQuizListener
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$context must implement ButtonRestartQuizListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null;
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +56,7 @@ class DialogFragment : androidx.fragment.app.DialogFragment() {
         view.findViewById<TextView>(R.id.F_Dialog_message).text = message
         view.findViewById<TextView>(R.id.F_Dialog_score).text = score
         view.findViewById<ImageView>(R.id.F_Dialog_imge).setBackgroundResource(icon!!)
-        view.findViewById<Button>(R.id.F_Dialog_restart_quiz).setOnClickListener{
-            dismiss()
-
-        }
+        view.findViewById<Button>(R.id.F_Dialog_restart_quiz).setOnClickListener { listener?.onClick()}
 
         return view
     }
